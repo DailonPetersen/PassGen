@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PassGen</string>
+    <string name="checkbox_uppercase">Uppercase</string>
+    <string name="checkbox_lowercase">Lowercase</string>
+    <string name="checkbox_numbers">Numbers</string>
+    <string name="checkbox_symbols">Symbols</string>
+    <string name="button_form">Generate</string>
+    <string name="title_form">Gerador de Senhas</string>
+</resources>

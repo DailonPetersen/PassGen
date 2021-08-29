@@ -3,39 +3,39 @@ package com.example.passgen.generator
 import kotlin.random.Random
 
 class Generator {
-
-    fun createRandomString() : String{
+    fun createRandomString(): String {
         return (1..length)
-            .map{ it -> Random.nextInt(0, charPool.size) }
+            .map { _ -> Random.nextInt(0, charPool.size) }
             .map(charPool::get)
             .joinToString("")
     }
 
     companion object {
-        private lateinit var charPool: MutableList<Char>
+        private val charPool = mutableListOf<Char>()
         private var length = 0
-        private val symbolsList = listOf('.', '@', '*', '$', '#','~','^','+','-','/','?','=')
+        private val symbolsList = listOf('.', '@', '*', '$', '#', '~', '^', '+', '-', '/', '?', '=')
 
-        fun setOptions(length: Int, options: Options){
+        fun setOptions(length: Int, options: Options) {
             this.length = length
-            if(options.upper)
+            if (options.upper)
                 charPool.addAll('A'..'Z')
 
-            if(options.upper)
+            if (options.lower)
                 charPool.addAll('a'..'z')
 
-            if(options.numbers)
+            if (options.numbers)
                 charPool.addAll('0'..'9')
 
-            if(options.symbols)
+            if (options.symbols)
                 charPool.addAll(symbolsList)
         }
     }
 }
 
 data class Options(
-    val upper: Boolean,
-    val lower: Boolean,
-    val numbers: Boolean,
-    val symbols: Boolean
+    val upper: Boolean = false,
+    val lower: Boolean = false,
+    val numbers: Boolean = false,
+    val symbols: Boolean = false
 )
+

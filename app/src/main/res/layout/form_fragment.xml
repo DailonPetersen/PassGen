@@ -1,65 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/formFragment"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/formTitle"
-        android:text="@string/title_form"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/llOptions"
-        app:layout_constraintLeft_toLeftOf="@+id/formFragment"
-        app:layout_constraintRight_toRightOf="@+id/formFragment"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="100sp">
 
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/llOptions"
         app:layout_constraintTop_toTopOf="@+id/formFragment"
-        app:layout_constraintLeft_toLeftOf="@+id/formFragment"
-        app:layout_constraintRight_toRightOf="@+id/formFragment"
-        app:layout_constraintBottom_toBottomOf="@+id/formFragment"
+        android:id="@+id/llTitle"
         android:orientation="vertical">
 
-        <CheckBox android:id="@+id/checkbox_uppercase"
+        <TextView
+            android:id="@+id/formTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/checkbox_uppercase"
-            android:onClick="onCheckboxClicked"
-            android:layout_marginLeft="50dp"/>
+            android:layout_gravity="center"
+            android:text="@string/title_form"
+            android:textSize="30sp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/lenghtField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="@string/password_length"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="@+id/formFragment"
+        app:layout_constraintLeft_toLeftOf="@+id/formFragment"
+        app:layout_constraintTop_toBottomOf="@+id/llTitle"
+        android:id="@+id/llOptions"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/checkbox_uppercase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chivo"
+            android:text="@string/checkbox_uppercase"/>
 
         <CheckBox android:id="@+id/checkbox_lowercase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/checkbox_lowercase"
-            android:onClick="onCheckboxClicked"
-            android:layout_marginLeft="50dp"/>
+            android:fontFamily="@font/chivo"/>
 
         <CheckBox android:id="@+id/checkbox_numbers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/checkbox_numbers"
-            android:onClick="onCheckboxClicked"
-            android:layout_marginLeft="50dp"/>
+            android:fontFamily="@font/chivo"/>
 
         <CheckBox android:id="@+id/checkbox_symbols"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/checkbox_symbols"
-            android:onClick="onCheckboxClicked"
-            android:layout_marginLeft="50dp"/>
-
+            android:fontFamily="@font/chivo"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_form"
+            android:textSize="12sp"
             android:id="@+id/generate_btn"/>
-
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/llDisplay"
+        app:layout_constraintLeft_toLeftOf="@+id/llOptions"
+        app:layout_constraintRight_toRightOf="@+id/llOptions"
+        app:layout_constraintTop_toBottomOf="@+id/llOptions"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/displayLabel"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:fontFamily="@font/advent_pro"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/password_generated" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/display"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:text="@string/password_field"/>
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@+id/formFragment"
+        app:layout_constraintRight_toRightOf="@+id/formFragment"
+        app:layout_constraintTop_toBottomOf="@+id/llDisplay"
+        android:text="@string/clean"
+        android:textSize="12sp"
+        android:id="@+id/clean_btn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

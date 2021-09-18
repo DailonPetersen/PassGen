@@ -16,9 +16,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val fm = supportFragmentManager
-        fm.beginTransaction().replace(R.id.fragmentContainer, FormFragment(), "form_fragment").commit()
     }
 
 }

@@ -9,13 +9,12 @@ class GeneratorViewModel : ViewModel() {
 
     val passwordGenerated = MutableLiveData<String>()
 
-    fun generate(upper: Boolean, lower: Boolean, numbers: Boolean, symbols: Boolean){
+    fun generate(length: Int, upper: Boolean, lower: Boolean, numbers: Boolean, symbols: Boolean){
 
         val optionsReceived = Options(upper, lower, numbers, symbols)
 
-        Generator.setOptions(10, optionsReceived)
+        Generator.setOptions(length, optionsReceived)
 
         passwordGenerated.value = Generator().createRandomString()
     }
-
 }

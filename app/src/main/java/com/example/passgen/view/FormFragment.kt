@@ -1,17 +1,22 @@
 package com.example.passgen.view
 
+import android.accessibilityservice.AccessibilityService
+import android.accessibilityservice.AccessibilityService.SHOW_MODE_HIDDEN
+import android.accessibilityservice.AccessibilityService.SoftKeyboardController
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.CompoundButton
+import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.passgen.databinding.FormFragmentBinding
 import com.example.passgen.viewmodel.GeneratorViewModel
 
-class FormFragment : Fragment() {
+class FormFragment : Fragment(), View.OnFocusChangeListener {
 
     private var _binding: FormFragmentBinding? = null
     private val bindingForm get() = _binding!!
@@ -59,8 +64,15 @@ class FormFragment : Fragment() {
         bindingForm.checkboxSymbols.setOnCheckedChangeListener { compoundButton, _ -> onSelectBox(compoundButton) }
 
         bindingForm.generateBtn.setOnClickListener {
-            model.generate(upper, lower, numbers, symbols)
+            val length = bindingForm.lenghtField.text.toString()
+            model.generate(length.toInt(), upper, lower, numbers, symbols)
         }
+
+        bindingForm.display.doOnTextChanged { _, _, _, _ ->
+            bindingForm.display.letterSpacing = Float.fromBits(0)
+        }
+
+        bindingForm.cleanBtn.setOnClickListener { cleanAll() }
 
         model.passwordGenerated.observe(viewLifecycleOwner, {
             bindingForm.display.text = it
@@ -70,5 +82,24 @@ class FormFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onFocusChange(view: View?, hasFocus: Boolean) {
+        if(hasFocus){
+            view?.let {
+                if(!it.id.equals(bindingForm.lenghtField) && bindingForm.lenghtField.isInEditMode){
+                    bindingForm.lenghtField.clearFocus()
+                }
+            }
+        }
+    }
+
+    private fun cleanAll() {
+        bindingForm.checkboxLowercase.isChecked = false
+        bindingForm.checkboxUppercase.isChecked = false
+        bindingForm.checkboxNumbers.isChecked = false
+        bindingForm.checkboxSymbols.isChecked = false
+        bindingForm.lenghtField.text?.clear()
+        bindingForm.display.text = ""
     }
 }

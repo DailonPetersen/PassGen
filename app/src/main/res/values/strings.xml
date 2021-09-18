@@ -5,8 +5,10 @@
     <string name="checkbox_numbers">Numbers</string>
     <string name="checkbox_symbols">Symbols</string>
     <string name="button_form">Generate</string>
-    <string name="title_form">Gerador de Senhas</string>
-    <string name="password_generated">Senha gerada</string>
-    <string name="password_field">...</string>
+    <string name="title_form">Password Generator</string>
+    <string name="password_length">password length</string>
+    <string name="password_generated">Generated password</string>
+    <string name="password_field">…</string>
+    <string name="clean">clean</string>
 
 </resources>
